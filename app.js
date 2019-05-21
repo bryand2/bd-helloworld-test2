@@ -4,7 +4,7 @@ var hostname = os.hostname();
 var app = express()
 
 app.get('/', function(req, res) {
-  res.send('Hello world from ' + hostname + '! Your app is up and running in a cluster! BRYAN WAS HERE!\n')
+  res.send('Hello world from ' + hostname + '! Your app is up and running in a cluster! BRYAN WAS HERE AND SO WAS FRANK!!!!\n')
 })
 app.listen(8080, function() {
   console.log('Sample app is listening on port 8080.')
