@@ -40,7 +40,7 @@ metadata:
   name: bd-helloworld-ingress
 spec:
   rules:
-  - host: helloworld.bryan-workday-demo.us-south.containers.appdomain.cloud
+  - host: updated-in-toolchain-script.cloud
     http:
       paths:
       - backend:
