@@ -2,8 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: bd-helloworld-deployment
-  labels:
-     app: bd-helloworld-deployment
 spec:
   replicas: 2
   selector:
@@ -39,7 +37,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-  name: bd-helloworld-via-ingress
+  name: bd-helloworld-ingress
 spec:
   rules:
   - host: helloworld.bryan-workday-demo.us-south.containers.appdomain.cloud
