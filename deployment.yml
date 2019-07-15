@@ -42,13 +42,13 @@ metadata:
   name: bd-helloworld-via-ingress
 spec:
   rules:
-  - host: bryan-workday-demo.us-south.containers.appdomain.cloud
+  - host: helloworld.bryan-workday-demo.us-south.containers.appdomain.cloud
     http:
       paths:
       - backend:
           serviceName: bd-helloworld-service
           servicePort: 80
-        path: /helloworld
+        path: /
 
      
     
