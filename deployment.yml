@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: bd-helloworld-deployment
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -14,8 +14,6 @@ spec:
           image: webapp:1
           # for local development against minikube registry
           #imagePullPolicy: Never        
-          ports:
-          - containerPort: 8080
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -25,7 +23,7 @@ metadata:
   labels:
     app: bd-helloworld-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     # the port that this service should serve on
     - port: 80
@@ -34,4 +32,23 @@ spec:
   # label keys and values that must match in order to receive traffic for this service
   selector:
     app: bd-helloworld-deployment
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.bluemix.net/proxy-read-timeout: serviceName=echoserver-service timeout=300s
+  name: bd-helloworld-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bd-helloworld-service
+          servicePort: 80
+        
 
+
+     
+    
