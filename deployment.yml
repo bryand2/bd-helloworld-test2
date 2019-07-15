@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bd-helloworld-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bd-helloworld-deployment
+    spec:
+      containers:
+        - name: bd-helloworld
+          image: webapp:1
+          # for local development against minikube registry
+          #imagePullPolicy: Never        
+          ports:
+          - containerPort: 8080
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bd-helloworld-service
+  labels:
+    app: bd-helloworld-service
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    app: bd-helloworld-deployment
+
