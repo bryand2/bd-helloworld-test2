@@ -40,13 +40,12 @@ metadata:
   name: bd-helloworld-ingress
 spec:
   rules:
-  - http:
+  - host: updated-in-toolchain-script.cloud
+    http:
       paths:
       - backend:
           serviceName: bd-helloworld-service
           servicePort: 80
         path: /
-    host: updated-in-toolchain-script.cloud
-
-     
+    
     
